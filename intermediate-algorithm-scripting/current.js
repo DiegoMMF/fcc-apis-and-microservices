@@ -13,6 +13,8 @@
  * third object from the array (the first argument), because it contains the 
  * name and its value, that was passed on as the second argument.
  */
+
+
 function whatIsInAName(collection, source) {
     const arr = [];
     collection.forEach(element => {
@@ -20,6 +22,7 @@ function whatIsInAName(collection, source) {
             if (source.hasOwnProperty(currentElementKey)) {
                 if (source[currentElementKey] === element[currentElementKey]) {
                     arr.push(element);
+                    /* falta hacerla recursiva por si source posee más de un par llave-valor */
                 }
             }
         } 
