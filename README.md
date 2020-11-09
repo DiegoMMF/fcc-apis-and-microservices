@@ -6,3 +6,6 @@ freeCode Camp curriculum excercises repository
 https://www.freecodecamp.org/learn (generic learning path)
 
 https://www.freecodecamp.org/diegommf (personal portfolio)
+
+### DiegoMMF's linkedin profile
+https://www.linkedin.com/in/diegommf/
