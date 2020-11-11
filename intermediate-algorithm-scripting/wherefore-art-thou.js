@@ -10,62 +10,26 @@
  * For example, if the first argument is [{ first: "Romeo", last: "Montague" },
  * { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }],
  * and the second argument is { last: "Capulet" }, then you must return the
- * third object from the array (the first argument), because it contains the
+ * third object from the array (the first argument), because it contains the 
  * name and its value, that was passed on as the second argument.
  */
-/**
- * 
- *  
- * 
- */
-const pairByPair = (collection, pair) => {
-  let aux;
-  collection.forEach((element) => {
-    for (const currentElementKey in element) {
-        const hasProperty = pair.hasOwnProperty(currentElementKey);
-        const hasSameValue = pair[currentElementKey] === element[currentElementKey];
-        if (hasProperty && hasSameValue) {
-            aux = true;
-        } else {
-            return false;
-        }
-      }
-    }
-  );
-  return aux;
-};
-
 function whatIsInAName(collection, source) {
-  const arr = [];
-  const pairsArray = Object.entries(source);
-  pairsArray.forEach((pair) => {
-      if (pairByPair(collection, Object.fromEntries([pair]))) {
-        arr.push(...Object.fromEntries([pair]))
-      };
-  });
-  console.log("arreglo dentro de whatISInAName", arr);
+  let arr = [];
+  arr = collection.filter(currElement => isContainedInObject(currElement, source));
   return arr;
 }
 
-whatIsInAName(
-  [{ apple: 1, bat: 2 }, { bat: 2 }, { apple: 1, bat: 2, cookie: 2 }],
-  { apple: 1, bat: 2 }
-); // should return [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie": 2 }].
-
-/* whatIsInAName(
-  [{ apple: 1, bat: 2 }, { apple: 1 }, { apple: 1, bat: 2, cookie: 2 }],
-  { apple: 1, cookie: 2 }
-); // should return [{ "apple": 1, "bat": 2, "cookie": 2 }].
-
-whatIsInAName(
-  [
-    { apple: 1, bat: 2 },
-    { apple: 1 },
-    { apple: 1, bat: 2, cookie: 2 },
-    { bat: 2 },
-  ],
-  { apple: 1, bat: 2 }
-); // should return [{ "apple": 1, "bat": 2 }, { "apple": 1, "bat": 2, "cookie":2 }].
-
-whatIsInAName([{ a: 1, b: 2, c: 3 }], { a: 1, b: 9999, c: 3 }); // should return []
- */
+const isContainedInObject = (containerObject, containedObject) => {
+  let isContained = true;
+  for (const key in containedObject) {
+    const hasProperty = containerObject.hasOwnProperty(key);
+    const hasSameValue = containerObject[key] === containedObject[key];
+    if (hasProperty && hasSameValue && isContained) {
+      isContained = true;
+    } else {
+      isContained = false;
+    }
+  }
+  return isContained;
+}
+whatIsInAName([{ first: "Romeo", last: "Montague" }, { first: "Mercutio", last: null }, { first: "Tybalt", last: "Capulet" }], { last: "Capulet" });
