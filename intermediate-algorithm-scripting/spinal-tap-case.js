@@ -1,3 +1,9 @@
+/**
+ * Intermediate Algorithm Scripting: Spinal Tap Case
+ * 
+ * Convert a string to spinal case. Spinal case is 
+ * all-lowercase-words-joined-by-dashes.
+ */
 const onlyAlphanumeric = (str) => {
   const notAlphanumeric = /[^(\d|\w)]+/gi;
   return str.replace(notAlphanumeric, "-");
@@ -16,4 +22,4 @@ function spinalCase(str) {
   return onlyAlphanumeric(newStr);
 }
 
-console.log(spinalCase("TheAndyGriffith_Show"))
+spinalCase('This Is Spinal Tap');
