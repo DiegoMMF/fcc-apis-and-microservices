@@ -1,17 +1,22 @@
 /**
- * Intermediate Algorithm Scripting: Pig Latin
+ * Intermediate Algorithm Scripting: Search and Replace
  * 
- * Pig Latin is a way of altering English Words. The rules are as follows:
+ * Perform a search and replace on the sentence using the arguments provided and 
+ * return the new sentence.
  * 
- * - If a word begins with a consonant, take the first consonant or consonant 
- * cluster, move it to the end of the word, and add "ay" to it.
+ * First argument is the sentence to perform the search and replace on.
  * 
- * - If a word begins with a vowel, just add "way" at the end.
+ * Second argument is the word that you will be replacing (before).
  * 
- * Translate the provided string to Pig Latin. Input strings are guaranteed to be 
- * English words in all lowercase.
+ * Third argument is what you will be replacing the second argument with (after).
+ * 
+ * Note
+ * Preserve the case of the first character in the original word when you are 
+ * replacing it. For example if you mean to replace the word "Book" with the word 
+ * "dog", it should be replaced as "Dog"
  */
-function translatePigLatin(str) {
-  
+function myReplace(str, before, after) {
   return str;
 }
+
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
