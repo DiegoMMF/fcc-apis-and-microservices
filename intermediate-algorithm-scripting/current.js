@@ -1,22 +1,21 @@
 /**
- * Intermediate Algorithm Scripting: Search and Replace
+ * Intermediate Algorithm Scripting: DNA Pairing
  * 
- * Perform a search and replace on the sentence using the arguments provided and 
- * return the new sentence.
+ * The DNA strand is missing the pairing element. Take each character, get its 
+ * pair, and return the results as a 2d array.
  * 
- * First argument is the sentence to perform the search and replace on.
+ * Base pairs are a pair of AT and CG. Match the missing element to the provided 
+ * character.
  * 
- * Second argument is the word that you will be replacing (before).
+ * Return the provided character as the first element in each array.
  * 
- * Third argument is what you will be replacing the second argument with (after).
+ * For example, for the input GCG, return [["G", "C"], ["C","G"],["G", "C"]]
  * 
- * Note
- * Preserve the case of the first character in the original word when you are 
- * replacing it. For example if you mean to replace the word "Book" with the word 
- * "dog", it should be replaced as "Dog"
+ * The character and its pair are paired up in an array, and all the arrays are 
+ * grouped into one encapsulating array.
  */
-function myReplace(str, before, after) {
+function pairElement(str) {
   return str;
 }
 
-myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+pairElement("GCG");
