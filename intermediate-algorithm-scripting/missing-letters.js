@@ -19,16 +19,3 @@ function fearNotLetter(str) {
     : String.fromCodePoint(str.codePointAt(0)+1);
   
 }
-
-console.log(fearNotLetter("ac"));
-
-/*
-  const a = "\u0041"
-  console.log(str.charCodeAt(0));
-  console.log(str.charCodeAt(1));
-  console.log(str.charCodeAt(2));
-  console.log(str.charCodeAt(3));
-  console.log(str.charCodeAt(4));
-  console.log(a.normalize());
-  return str;
-*/
