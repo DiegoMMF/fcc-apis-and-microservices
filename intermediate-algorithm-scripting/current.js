@@ -9,7 +9,15 @@
  * than or equal to 10 are 1, 1, 3, and 5.
  */
 function sumFibs(num) {
-  return num;
+  const sum = 0;
+  let proto = 0;
+  for (let index = 1; index <= num; index = proto + index)  {
+    proto = index + proto;
+    index = proto;
+    console.log("index", index);
+    console.log("proto", proto);
+  }
+  return null;
 }
 
-sumFibs(4);
+sumFibs(10);
