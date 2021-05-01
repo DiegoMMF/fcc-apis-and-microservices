@@ -1,16 +1,12 @@
 /**
- * Given the array arr, iterate through and remove each element 
- * starting from the first element (the 0 index) until the 
- * function func returns true when the iterated element is 
- * passed through it.
+ * Flatten a nested array. You must account for varying levels of nesting.
  * 
- * Then return the rest of the array once the condition is 
- * satisfied, otherwise, arr should be returned as an empty 
- * array.
+ * Note: Your solution should not use the Array.prototype.flat()
+ * or Array.prototype.flatMap() methods.
  */
 
- function dropElements(arr, func) {
-  return arr;
+function steamrollArray(arr) {
+
 }
 
-dropElements([1, 2, 3], function(n) {return n < 3; });
+steamrollArray([1, [2], [3, [[4]]]]);
