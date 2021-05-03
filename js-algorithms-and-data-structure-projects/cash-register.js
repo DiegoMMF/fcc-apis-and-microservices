@@ -28,18 +28,45 @@
  * Twenty Dollars             $20         (TWENTY)
  * One-hundred Dollars        $100        (ONE HUNDRED)
  */
+function ordenar(cid) {
+  // también podríamos haber usado .reverse() pero quería asegurarme de
+  // devolver el arreglo bien ordenado sin importar el orden inicial
+  const nuevoCid = [];
+  const orden = [
+    "ONE HUNDRED",
+    "TWENTY",
+    "TEN",
+    "FIVE",
+    "ONE",
+    "QUARTER",
+    "DIME",
+    "NICKEL",
+    "PENNY",
+  ];
+  orden.forEach((denomination) => {
+    cid.forEach((par) => {
+      if (denomination == par[0]) nuevoCid.push(par);
+    });
+  });
+  return nuevoCid;
+}
+
 function checkCashRegister(price, cash, cid) {
   const totalSum = (cid.reduce((acc, curr) => acc + curr[1], 0) * 100) / 100;
-  const montoAdevolver = cash - price;
+  let montoAdevolver = cash - price;
   if (montoAdevolver > totalSum)
     return { status: "INSUFFICIENT_FUNDS", change: [] };
   if (montoAdevolver == totalSum) return { status: "CLOSED", change: cid };
 
+  const nuevoCid = ordenar(cid);
+  console.log({cid})
+  console.log({nuevoCid})
   const vueltoEfectivo = {};
 
-  for (const key in cid) {
+  for (const key in nuevoCid) {
+    let parActual = nuevoCid[key];
     let cifra = 0;
-    switch (key) {
+    switch (parActual[0]) {
       case "ONE HUNDRED":
         cifra = 100;
         break;
@@ -71,27 +98,30 @@ function checkCashRegister(price, cash, cid) {
         cifra = 0;
         break;
     }
-    while (montoAdevolver >= cifra) {
-      caja[key] -= cifra;
-      montoAdevolver -= cifra;
-      !vueltoEfectivo[key]
-        ? (vueltoEfectivo[key] = cifra)
-        : (vueltoEfectivo[key] += cifra);
+    while (montoAdevolver >= cifra && parActual[1] >= cifra ) {
+      // quitamos un billete/moneda de dicha denominación de la caja
+      parActual[1] = (parActual[1] - cifra).toFixed(2);
+      parActual[1] = Number.parseFloat(parActual[1])
+      montoAdevolver = (montoAdevolver - cifra).toFixed(2);
+      montoAdevolver = Number.parseFloat(montoAdevolver);
+      !vueltoEfectivo[parActual[0]]
+        ? (vueltoEfectivo[parActual[0]] = cifra)
+        : (vueltoEfectivo[parActual[0]] += cifra);
     }
   }
 
   if (montoAdevolver > 0) return { status: "INSUFFICIENT_FUNDS", change: [] };
 
   const change = [];
-  for (const key in caja) {
-    let parNuevo = [key, caja[key]];
+  for (const key in vueltoEfectivo) {
+    let parNuevo = [key, vueltoEfectivo[key]];
     change.push(parNuevo);
   }
   return { status: "OPEN", change };
 }
 
 console.log(
-  checkCashRegister(19.5, 20, [
+  checkCashRegister(3.26, 100, [
     ["PENNY", 1.01],
     ["NICKEL", 2.05],
     ["DIME", 3.1],
@@ -101,5 +131,19 @@ console.log(
     ["TEN", 20],
     ["TWENTY", 60],
     ["ONE HUNDRED", 100],
+  ])
+);
+
+console.log(
+  checkCashRegister(19.5, 20, [
+    ["PENNY", 0.01],
+    ["NICKEL", 0],
+    ["DIME", 0],
+    ["QUARTER", 0],
+    ["ONE", 1],
+    ["FIVE", 0],
+    ["TEN", 0],
+    ["TWENTY", 0],
+    ["ONE HUNDRED", 0],
   ])
 );
